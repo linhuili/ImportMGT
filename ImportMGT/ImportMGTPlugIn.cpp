@@ -36,12 +36,12 @@ RHINO_PLUG_IN_VERSION( __DATE__"  "__TIME__ )
 	//
 	// When completed, delete the following #error directive.
 	//#error Developer declarations block is incomplete!
-	RHINO_PLUG_IN_DEVELOPER_ORGANIZATION( L"±±¾©Êı×ÖÓª¹úĞÅÏ¢¼¼ÊõÓĞÏŞ¹«Ë¾£¨BIMTechnologies£©" );
-RHINO_PLUG_IN_DEVELOPER_ADDRESS( L"±±¾©ÊĞÎ÷³ÇÇøÄÏÀñÊ¿Â·¶şÌõ¼×Ò»ºÅ\r\nÔÂÌ³ÀíÏë´óÏÃ217ÊÒ" );
+	RHINO_PLUG_IN_DEVELOPER_ORGANIZATION( L"æ—æ…§ç«‹" );
+RHINO_PLUG_IN_DEVELOPER_ADDRESS( L"åŒ—äº¬å¸‚è¥¿åŸåŒº " );
 RHINO_PLUG_IN_DEVELOPER_COUNTRY( L"China" );
-RHINO_PLUG_IN_DEVELOPER_PHONE( L"+8613581819784" );
+RHINO_PLUG_IN_DEVELOPER_PHONE( L"18668608236" );
 RHINO_PLUG_IN_DEVELOPER_FAX( L" " );
-RHINO_PLUG_IN_DEVELOPER_EMAIL( L"CalvinScofield@gmail.com" );
+RHINO_PLUG_IN_DEVELOPER_EMAIL( L" " );
 RHINO_PLUG_IN_DEVELOPER_WEBSITE( L" " );
 RHINO_PLUG_IN_UPDATE_URL( L" " );
 
@@ -203,8 +203,8 @@ BOOL CImportMGTPlugIn::ReadFile( const wchar_t* filename, int index, CRhinoDoc& 
 	// Return TRUE if successful, otherwise return FALSE.
 
 	// TODO: Add file import code here.
-	int with_section=RhinoMessageBox(RhinoApp().MainWnd(),L"½ØÃæ£¿", L"½ØÃæ", MB_YESNO);
-	int with_check=RhinoMessageBox(RhinoApp().MainWnd(),L"³¤¶È½Ç¶È¼ìÑé£¿", L"¼ìÑé", MB_YESNO);
+	int with_section=RhinoMessageBox(RhinoApp().MainWnd(),L"æˆªé¢ï¼Ÿ", L"æˆªé¢", MB_YESNO);
+	int with_check=RhinoMessageBox(RhinoApp().MainWnd(),L"é•¿åº¦è§’åº¦æ£€éªŒï¼Ÿ", L"æ£€éªŒ", MB_YESNO);
 	int i;
 	ON_3dPoint on_3dpt1,on_3dpt2,on_3dpt3,on_3dpt4;
 	ON_Line on_ln;
@@ -232,12 +232,12 @@ BOOL CImportMGTPlugIn::ReadFile( const wchar_t* filename, int index, CRhinoDoc& 
 		docprop.SetUnitsAndTolerances(muat);
 		if (IDYES==with_check)
 			Check();
-		//ÏòÏ¬Å£ÎÄ¼şÖĞÌí¼ÓNodes
+		//å‘çŠ€ç‰›æ–‡ä»¶ä¸­æ·»åŠ Nodes
 		for(i=0;i<m_Nodes->GetSize ();i++)
 		{
 			AddNode(m_Nodes->GetAt(i),doc,layer_NODE);
 		}
-		//ÏòÏ¬Å£ÎÄ¼şÖĞÌí¼ÓElements
+		//å‘çŠ€ç‰›æ–‡ä»¶ä¸­æ·»åŠ Elements
 		for(i=0;i<m_Elements->GetSize ();i++)
 		{
 			AddElement(m_Elements->GetAt (i),doc,layer_ELEMENT,with_section,layer_SECTION);
@@ -308,12 +308,12 @@ BOOL CImportMGTPlugIn::ReadFile( const wchar_t* filename, int index, CRhinoDoc& 
 		}
 		if (IDYES==with_check)
 			Check(scale);
-		//ÏòÏ¬Å£ÎÄ¼şÖĞÌí¼ÓNodes
+		//å‘çŠ€ç‰›æ–‡ä»¶ä¸­æ·»åŠ Nodes
 		for(i=0;i<m_Nodes->GetSize ();i++)
 		{
 			AddNode(m_Nodes->GetAt(i),doc,layer_NODE,scale);
 		}
-		//ÏòÏ¬Å£ÎÄ¼şÖĞÌí¼ÓElements
+		//å‘çŠ€ç‰›æ–‡ä»¶ä¸­æ·»åŠ Elements
 		for(i=0;i<m_Elements->GetSize ();i++)
 		{
 			AddElement(m_Elements->GetAt (i),doc,layer_ELEMENT,with_section,layer_SECTION,scale);
@@ -363,9 +363,9 @@ BOOL CImportMGTPlugIn::ReadMgtFile( const wchar_t* filename, CRhinoDoc& doc )
 	CString token;
 	int iFind1,iFind2;
 
-	//´ò¿ª.mgtÎÄ¼ş
+	//æ‰“å¼€.mgtæ–‡ä»¶
 	CStdioFile f1(filename,CFile::modeRead | CFile::typeText );
-	//¶¨Î»µ½Version ²¢¶ÁÈ¡ÏàÓ¦Êı¾İ
+	//å®šä½åˆ°Version å¹¶è¯»å–ç›¸åº”æ•°æ®
 	f1.ReadString (csLine);
 	csLine.Trim ();
 	while(L"*VERSION"!=csLine)
@@ -376,7 +376,7 @@ BOOL CImportMGTPlugIn::ReadMgtFile( const wchar_t* filename, CRhinoDoc& doc )
 	f1.ReadString (csLine);
 	csLine.Trim ();
 	m_Version=csLine;
-	//¶¨Î»µ½Unit System²¢¶ÁÈ¡ÏàÓ¦Êı¾İ
+	//å®šä½åˆ°Unit Systemå¹¶è¯»å–ç›¸åº”æ•°æ®
 	while(L"*UNIT    ; Unit System"!=csLine)
 	{
 		f1.ReadString (csLine);
@@ -406,7 +406,7 @@ BOOL CImportMGTPlugIn::ReadMgtFile( const wchar_t* filename, CRhinoDoc& doc )
 	m_Unit.LENGTH=arrLine.GetAt (1);
 	m_Unit.HEAT=arrLine.GetAt (2);
 	m_Unit.TEMPER=arrLine.GetAt (3);
-	//¶¨Î»µ½Nodes²¢¶ÁÈ¡ÏàÓ¦Êı¾İ
+	//å®šä½åˆ°Nodeså¹¶è¯»å–ç›¸åº”æ•°æ®
 	m_Nodes=new CArray<NODE,NODE>;
 	m_Nodes->SetSize (0);
 	NODE nodeTemp;
@@ -450,12 +450,12 @@ BOOL CImportMGTPlugIn::ReadMgtFile( const wchar_t* filename, CRhinoDoc& doc )
 		f1.ReadString (csLine);
 		csLine.Trim ();
 	}
-	//ÎªiNO½¨Á¢Ë÷Òı
+	//ä¸ºiNOå»ºç«‹ç´¢å¼•
 	m_iNOIndex=new CArray<int,int>;
 	m_iNOIndex->SetSize (0);
 	for(i=0;i<m_Nodes->GetSize();i++)
 		m_iNOIndex->SetAtGrow (m_Nodes->GetAt(i).iNO,i);
-	//¶¨Î»µ½Elements²¿·Ö²¢¶ÁÈ¡Êı¾İ
+	//å®šä½åˆ°Elementséƒ¨åˆ†å¹¶è¯»å–æ•°æ®
 	m_Elements=new CArray<ELEMENT,ELEMENT>;
 	m_Beams=new CArray<BEAM_TRUSS,BEAM_TRUSS>;
 	m_Trusses=new CArray<BEAM_TRUSS,BEAM_TRUSS>;
@@ -529,7 +529,7 @@ BOOL CImportMGTPlugIn::ReadMgtFile( const wchar_t* filename, CRhinoDoc& doc )
 		f1.ReadString (csLine);
 		csLine.Trim ();
 	}
-	//¶¨Î»µ½Section²¿·Ö²¢¶ÁÈ¡Êı¾İ
+	//å®šä½åˆ°Sectionéƒ¨åˆ†å¹¶è¯»å–æ•°æ®
 	m_Section = new CArray<SECTION,SECTION>;
 	m_DBUSER = new CArray<DBUSER,DBUSER>;
 	m_DATA1_1 = new CArray<DATA1_1,DATA1_1>;
@@ -693,7 +693,7 @@ BOOL CImportMGTPlugIn::ReadMgtFile( const wchar_t* filename, CRhinoDoc& doc )
 		f1.ReadString (csLine);
 		csLine.Trim ();
 	}
-	//ÎªiSEC½¨Á¢Ë÷Òı
+	//ä¸ºiSECå»ºç«‹ç´¢å¼•
 	m_iSECIndex=new CArray<int,int>;
 	m_iSECIndex->SetSize (0);
 	for(i=0;i<m_Section->GetSize();i++)
@@ -933,7 +933,7 @@ bool CImportMGTPlugIn::AddElement(const ELEMENT& Element,CRhinoDoc& doc,int laye
 			}
 		}
 
-		//Rhino 5.0Ö®Ç°Ã»ÓĞExtrusion
+		//Rhino 5.0ä¹‹å‰æ²¡æœ‰Extrusion
 #pragma region AddSectionRhino4
 		/*if(IDYES==with_section)
 		{
@@ -978,7 +978,7 @@ bool CImportMGTPlugIn::AddElement(const ELEMENT& Element,CRhinoDoc& doc,int laye
 								attr.SetUserString (L"Length",cstr);
 							}
 							cstr.Format (L"%.3f",on_ln.Length() /(0.25*sqrt(diameter*diameter+(diameter-2*thickness)*(diameter-2*thickness))));
-							attr.SetUserString (L"³¤Ï¸±È",cstr);
+							attr.SetUserString (L"é•¿ç»†æ¯”",cstr);
 							CRhinoObjRef ref(pBObj);
 							doc.ModifyObjectAttributes(ref, attr);
 							if( doc.AddObject(pBObj) )
@@ -1049,7 +1049,7 @@ bool CImportMGTPlugIn::AddElement(const ELEMENT& Element,CRhinoDoc& doc,int laye
 								attr.SetUserString (L"Length",cstr);
 							}
 							cstr.Format (L"%.3f",on_ln.Length() /(0.289*min(length,width)));
-							attr.SetUserString (L"³¤Ï¸±È",cstr);
+							attr.SetUserString (L"é•¿ç»†æ¯”",cstr);
 							CRhinoObjRef ref(pBObj);
 							doc.ModifyObjectAttributes(ref, attr);
 							if( doc.AddObject(pBObj) )
@@ -1153,7 +1153,7 @@ bool CImportMGTPlugIn::AddElement(const ELEMENT& Element,CRhinoDoc& doc,int laye
 								attr.SetUserString (L"Length",cstr);
 							}
 							cstr.Format (L"%.3f",on_ln.Length() /(0.289*length3));
-							attr.SetUserString (L"³¤Ï¸±È",cstr);
+							attr.SetUserString (L"é•¿ç»†æ¯”",cstr);
 							CRhinoObjRef ref(pBObj);
 							doc.ModifyObjectAttributes(ref, attr);
 							if( doc.AddObject(pBObj) )
@@ -1194,7 +1194,7 @@ bool CImportMGTPlugIn::AddElement(const ELEMENT& Element,CRhinoDoc& doc,int laye
 								attr.SetUserString (L"Length",cstr);
 							}
 							cstr.Format (L"%.3f",on_ln.Length() /(0.25*diameter));
-							attr.SetUserString (L"³¤Ï¸±È",cstr);
+							attr.SetUserString (L"é•¿ç»†æ¯”",cstr);
 							CRhinoObjRef ref(pBObj);
 							doc.ModifyObjectAttributes(ref, attr);
 							if( doc.AddObject(pBObj) )
@@ -1306,7 +1306,7 @@ bool CImportMGTPlugIn::AddElement(const ELEMENT& Element,CRhinoDoc& doc,int laye
 							attr.SetUserString (L"Length",cstr);
 						}
 						cstr.Format (L"%.3f",on_ln.Length() /(0.289*(length13+length23)/2));
-						attr.SetUserString (L"³¤Ï¸±È",cstr);
+						attr.SetUserString (L"é•¿ç»†æ¯”",cstr);
 						CRhinoObjRef ref(pBObj);
 						doc.ModifyObjectAttributes(ref, attr);
 						if( doc.AddObject(pBObj) )
@@ -1374,7 +1374,7 @@ bool CImportMGTPlugIn::AddElement(const ELEMENT& Element,CRhinoDoc& doc,int laye
 								attr.SetUserString (L"Length",cstr);
 							}
 							cstr.Format (L"%.3f",on_ln.Length() /(0.25*sqrt(diameter*diameter+(diameter-2*thickness)*(diameter-2*thickness))));
-							attr.SetUserString (L"³¤Ï¸±È",cstr);
+							attr.SetUserString (L"é•¿ç»†æ¯”",cstr);
 							CRhinoObjRef ref(extruObj);
 							doc.ModifyObjectAttributes(ref, attr);
 							if( doc.AddObject(extruObj) )
@@ -1445,7 +1445,7 @@ bool CImportMGTPlugIn::AddElement(const ELEMENT& Element,CRhinoDoc& doc,int laye
 								attr.SetUserString (L"Length",cstr);
 							}
 							cstr.Format (L"%.3f",on_ln.Length() /(0.289*min(length,width)));
-							attr.SetUserString (L"³¤Ï¸±È",cstr);
+							attr.SetUserString (L"é•¿ç»†æ¯”",cstr);
 							CRhinoObjRef ref(extruObj);
 							doc.ModifyObjectAttributes(ref, attr);
 							if( doc.AddObject(extruObj) )
@@ -1527,7 +1527,7 @@ bool CImportMGTPlugIn::AddElement(const ELEMENT& Element,CRhinoDoc& doc,int laye
 								attr.SetUserString (L"Length",cstr);
 							}
 							cstr.Format (L"%.3f",on_ln.Length() /(0.289*length3));
-							attr.SetUserString (L"³¤Ï¸±È",cstr);
+							attr.SetUserString (L"é•¿ç»†æ¯”",cstr);
 							CRhinoObjRef ref(extruObj);
 							doc.ModifyObjectAttributes(ref, attr);
 							if( doc.AddObject(extruObj) )
@@ -1580,7 +1580,7 @@ bool CImportMGTPlugIn::AddElement(const ELEMENT& Element,CRhinoDoc& doc,int laye
 								attr.SetUserString (L"Length",cstr);
 							}
 							cstr.Format (L"%.3f",on_ln.Length() /(0.25*diameter));
-							attr.SetUserString (L"³¤Ï¸±È",cstr);
+							attr.SetUserString (L"é•¿ç»†æ¯”",cstr);
 							CRhinoObjRef ref(extruObj);
 							doc.ModifyObjectAttributes(ref, attr);
 							if( doc.AddObject(extruObj) )
@@ -1696,7 +1696,7 @@ bool CImportMGTPlugIn::AddElement(const ELEMENT& Element,CRhinoDoc& doc,int laye
 							attr.SetUserString (L"Length",cstr);
 						}
 						cstr.Format (L"%.3f",on_ln.Length() /(0.289*(length13+length23)/2));
-						attr.SetUserString (L"³¤Ï¸±È",cstr);
+						attr.SetUserString (L"é•¿ç»†æ¯”",cstr);
 						CRhinoObjRef ref(pBObj);
 						doc.ModifyObjectAttributes(ref, attr);
 						if( doc.AddObject(pBObj) )
@@ -1723,7 +1723,7 @@ void CImportMGTPlugIn::Check(double scale)
 	int i,j,m;
 	ON_SimpleArray<ON_wString> str;
 
-	//³¤¶È¼ìÑé
+	//é•¿åº¦æ£€éªŒ
 	m=0;
 	str.Destroy ();
 	if("MM"==m_Unit.LENGTH )
@@ -1818,7 +1818,7 @@ void CImportMGTPlugIn::Check(double scale)
 		f1.WriteString(str[i]);
 	f1.Close ();
 
-	//½Ç¶È¼ìÑé
+	//è§’åº¦æ£€éªŒ
 
 	m=0;
 	str.Destroy ();
